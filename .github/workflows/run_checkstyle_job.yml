@@ -1,0 +1,15 @@
+name: Check code quality via CheckStyle
+
+on:
+  workflow_call:
+
+jobs:
+  checkstyle:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+      - name: Checkstyle for main with Gradle
+        run: ./gradlew checkstyleMain

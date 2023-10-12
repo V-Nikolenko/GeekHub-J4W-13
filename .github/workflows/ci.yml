@@ -1,0 +1,26 @@
+name: Java GitHub CI
+
+run-name: Running default CI-checks for code pushed by ${{ github.actor }}
+
+permissions: write-all
+
+on:
+  push:
+
+jobs:
+  build:
+    name: Build application
+    uses: ./.github/workflows/run_build_job.yml
+
+  test:
+    needs: build
+    name: Test application
+    uses: ./.github/workflows/run_tests_job.yml
+
+  sonarlint:
+    name: Check application style
+    uses: ./.github/workflows/run_sonarlint_job.yml
+
+  checkstype:
+    name: Check application style
+    uses: ./.github/workflows/run_checkstyle_job.yml

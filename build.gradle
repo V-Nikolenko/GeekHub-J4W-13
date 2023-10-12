@@ -1,0 +1,62 @@
+plugins {
+    id 'name.remal.sonarlint' version '3.3.11'
+}
+
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'checkstyle'
+    apply plugin: 'jacoco'
+    apply plugin: 'name.remal.sonarlint'
+
+    group = 'org.geekhub'
+
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        implementation 'com.google.code.findbugs:jsr305:3.0.2'
+    }
+
+    build.dependsOn checkstyleMain
+    build.dependsOn sonarlintMain
+
+    idea {
+        module {
+            sourceDirs += file('src/main/java')
+        }
+    }
+
+    jacocoTestCoverageVerification {
+        dependsOn jacocoTestReport
+        violationRules {
+            failOnViolation = true
+            rule {
+                limit {
+                    minimum = 0.85
+                }
+            }
+        }
+    }
+
+    sonarLint {
+        languages {
+            include('java')
+        }
+        rules {
+            disable(
+                    'java:S107', // Allow constructors with more than 7 parameters
+                    'java:S3776', // Allow methods with more than 15 lines
+                    'java:S1135' // Allow TODO comments
+            )
+        }
+    }
+
+    test {
+        useJUnit()
+    }
+}
