@@ -1,0 +1,10 @@
+rootProject.name = 'GeekHub-J4W-13'
+
+include 'Homework:java-core:01-Introduction'
+include 'Homework:java-core:02-Basics'
+include 'Homework:java-core:03-OOP'
+
+include 'Homework:java-web'
+include 'Homework:java-web:14-Gradle-CI'
+
+include 'Coursework'
