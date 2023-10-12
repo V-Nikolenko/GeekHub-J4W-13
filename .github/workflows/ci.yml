@@ -18,9 +18,9 @@ jobs:
     uses: ./.github/workflows/run_tests_job.yml
 
   sonarlint:
-    name: Check application style
+    name: Check application style via sonarlint
     uses: ./.github/workflows/run_sonarlint_job.yml
 
   checkstype:
-    name: Check application style
+    name: Check application style via checkstyle
     uses: ./.github/workflows/run_checkstyle_job.yml
