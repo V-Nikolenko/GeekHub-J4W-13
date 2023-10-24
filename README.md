@@ -1,7 +1,7 @@
 | №  | Topic                                        | Date       | Type           | Recording |
 |----|----------------------------------------------|------------|----------------|-----------|
 | 1  | Introduction                                 | 17.10.2023 | Offline/Online | None      |
-| 2  | Basics                                       | 24.10.2023 | Offline/Online |           |
+| 2  | Basics                                       | 24.10.2023 | Offline/Online | None      |
 | 3  | Object-oriented Programming                  | 31.10.2023 | Offline/Online |           |
 | 4  | Generics. Collections Framework              | 7.11.2023  | Offline/Online |           |
 | 5  | Error Propagation and Handling, Input/Output | 14.11.2023 | Online         |           |
