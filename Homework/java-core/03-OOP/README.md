@@ -9,12 +9,12 @@
 
 ### Model
 
-1. `Orc`
+1. **Orc**
     - Orc types
-        1. Orc
-        2. Driver
+        1. `Orc`
+        2. `Driver`
            - has driver license
-        3. Pilot
+        3. `Pilot`
            - has flew hours score
         4. ...TODO...
     - Cost a bit
@@ -22,10 +22,10 @@
         - cost can be customized for each orc
         - orc cost can increase during his life
         - scream on death
-2. `Technique`
+2. **Technique**
     - Technic types
-        1. Tank
-        2. Aircraft
+        1. `Tank`
+        2. `Aircraft`
         3. ...TODO...
     - Cost a bit. Cost is hardcoded for each type
     - Can shoot. Sound differently
@@ -36,7 +36,7 @@
         - Equipage size has realistic limits
             - Tank contains from 0 to 6 orcs
             - Orcs are unique and not repeatable
-3. `Collection`
+3. **Collection**
     1. Simple implementation of collection
     2. Collection API should provide:
         1. Add new element
