@@ -20,8 +20,8 @@ class AircraftTest {
 
         assertEquals(1, aircraft.getEquipage().size());
         Pilot actualPilot = (Pilot) aircraft.getEquipage().getElements()[0];
-        assertEquals(actualPilot.getPrice(), 20000);
-        assertEquals(actualPilot.getFlewHours(), 500);
+        assertEquals(20000, actualPilot.getPrice());
+        assertEquals(500, actualPilot.getFlewHours());
     }
 
     @Test
