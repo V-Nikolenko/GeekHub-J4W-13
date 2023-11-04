@@ -9,10 +9,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class TankTest {
-    @Test
-    void can_build_tank() {
-        new Tank(3);
-    }
 
     @Test
     void tank_price_is_3_000_000() {
