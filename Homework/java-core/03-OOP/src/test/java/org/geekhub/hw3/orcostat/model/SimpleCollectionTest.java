@@ -7,13 +7,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class SimpleCollectionTest {
 
     @Test
-    void can_create() {
-        new SimpleCollection();
-    }
-
-    @Test
     void can_create_and_init() {
-        new SimpleCollection("first", "second");
+        SimpleCollection collection = new SimpleCollection("first", "second");
+
+        assertEquals(2, collection.size());
+        assertEquals("first", collection.getElements()[0]);
+        assertEquals("second", collection.getElements()[1]);
     }
 
     @Test
