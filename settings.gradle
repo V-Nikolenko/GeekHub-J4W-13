@@ -4,6 +4,7 @@ include 'Homework:java-core:01-Introduction'
 include 'Homework:java-core:02-Basics'
 include 'Homework:java-core:03-OOP'
 include 'Homework:java-core:04-Collections'
+include 'Homework:java-core:05-Exception-Files'
 
 include 'Homework:java-web'
 include 'Homework:java-web:14-Gradle-CI'
