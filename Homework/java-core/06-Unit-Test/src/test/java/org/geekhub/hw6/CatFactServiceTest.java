@@ -1,11 +1,9 @@
 package org.geekhub.hw6;
 
 import com.google.gson.Gson;
-import org.apache.http.ProtocolVersion;
-import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.entity.ByteArrayEntity;
-import org.apache.http.message.BasicHttpResponse;
-import org.apache.http.message.BasicStatusLine;
+import org.apache.http.impl.client.CloseableHttpClient;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -17,6 +15,7 @@ import java.io.IOException;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -24,7 +23,7 @@ class CatFactServiceTest {
     private static final String CAT_FACT_JSON = "{\"fact\": \"test fact\"}";
 
     @Mock
-    private HttpClient httpClient;
+    private CloseableHttpClient httpClient;
 
     private CatFactService catFactService;
 
@@ -37,9 +36,9 @@ class CatFactServiceTest {
 
     @Test
     void getRandomCatFact() throws CatFactException, IOException {
-        var response = new BasicHttpResponse(new BasicStatusLine(new ProtocolVersion("https", 1, 1), 200, null));
-        response.setEntity(new ByteArrayEntity(CAT_FACT_JSON.getBytes()));
+        var response = mock(CloseableHttpResponse.class);
         when(httpClient.execute(any())).thenReturn(response);
+        when(response.getEntity()).thenReturn(new ByteArrayEntity(CAT_FACT_JSON.getBytes()));
 
         assertThat(catFactService.getRandomCatFact()).isEqualTo("test fact");
     }
