@@ -6,6 +6,7 @@ include 'Homework:java-core:03-OOP'
 include 'Homework:java-core:04-Collections'
 include 'Homework:java-core:05-Exception-Files'
 include 'Homework:java-core:06-Unit-Test'
+include 'Homework:java-core:07-Optional-Stream-API'
 
 include 'Homework:java-web'
 include 'Homework:java-web:14-Gradle-CI'
