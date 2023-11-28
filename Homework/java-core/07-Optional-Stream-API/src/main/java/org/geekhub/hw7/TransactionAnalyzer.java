@@ -36,7 +36,6 @@ public interface TransactionAnalyzer {
      * Calculates the total amount spent in each category.
      * The results are sorted by amount in descending order.
      *
-     * @param date The date for which the spending analysis is to be done.
      * @return A map with category names as keys and total spent amounts as values, sorted by the spent amount.
      */
     Map<String, Double> getSpentAmountByCategory();
