@@ -44,7 +44,7 @@ public class ApplicationStarter {
                                 throw new Exception("Empty subject name.");
                             } else {
                                 System.out.println("Please enter from 0-100 to set " + subjectName  + " score.");
-                                int subjectScore = Integer.parseInt(scanner.nextLine());
+                                double subjectScore = Double.parseDouble(scanner.nextLine());
                                 if (subjectScore > 0 && subjectScore <= 100) {
                                     scores.put(subjectName, (double) subjectScore);
                                 } else {
