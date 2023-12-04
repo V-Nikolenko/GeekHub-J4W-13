@@ -36,6 +36,10 @@ public class ApplicationStarter {
                     }
                     System.out.println("Enter name:");
                     String name = scanner.nextLine();
+                    if (name.isBlank()) {
+                        System.out.println("Name cannot be empty");
+                        break;
+                    }
                     while (isNotExit && exception == null) {
                         try {
                             System.out.println("Enter subject. Empty if exit");
