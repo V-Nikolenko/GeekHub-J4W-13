@@ -29,6 +29,12 @@ public class GetStudentApi {
 
     public void printSpecificStudent() {
         System.out.println("In which student you're interested in?");
+        List<Student> students = studentService.getStudents();
+        for (int index = 0; index < students.size(); index++) {
+            String name = students.get(index).name();
+            System.out.println(index + " - " + name);
+        }
+
         int index = Integer.parseInt(scanner.nextLine());
 
         Student student = studentService.getStudent(index);

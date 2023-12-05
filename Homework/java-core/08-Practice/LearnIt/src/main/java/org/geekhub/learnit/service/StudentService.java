@@ -2,7 +2,6 @@ package org.geekhub.learnit.service;
 
 import org.geekhub.learnit.model.Student;
 import org.geekhub.learnit.repository.StudentRepository;
-import org.geekhub.learnit.repository.StudentRepositoryInMemory;
 
 import java.util.List;
 import java.util.Map;
