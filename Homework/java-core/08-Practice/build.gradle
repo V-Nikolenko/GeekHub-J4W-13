@@ -8,8 +8,4 @@ allprojects {
         testImplementation 'org.mockito:mockito-junit-jupiter'
         testImplementation 'org.assertj:assertj-core:3.24.2'
     }
-
-    test {
-        useJUnitPlatform()
-    }
 }
