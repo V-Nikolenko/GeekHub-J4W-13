@@ -8,6 +8,7 @@ include 'Homework:java-core:05-Exception-Files'
 include 'Homework:java-core:06-Unit-Test'
 include 'Homework:java-core:07-Optional-Stream-API'
 include 'Homework:java-core:08-Practice:LearnIt'
+include 'Homework:java-core:09-Concurrency'
 
 
 include 'Homework:java-web'
