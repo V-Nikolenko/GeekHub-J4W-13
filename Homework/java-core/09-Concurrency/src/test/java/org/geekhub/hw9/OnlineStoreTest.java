@@ -23,7 +23,7 @@ class OnlineStoreTest {
 
     @BeforeEach
     void setUp() {
-        onlineStore = new OnlineStore();
+        onlineStore = new OnlineStore(Executors.newFixedThreadPool(5));
     }
 
     @Test

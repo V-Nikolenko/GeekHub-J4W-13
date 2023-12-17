@@ -4,6 +4,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.concurrent.Executors;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class StockManagerTest {
@@ -13,7 +15,7 @@ class StockManagerTest {
 
     @BeforeEach
     void setUp() {
-        onlineStore = new OnlineStore();
+        onlineStore = new OnlineStore(Executors.newFixedThreadPool(5));
         stockManager = new StockManager(onlineStore, 1, 1);
     }
 
