@@ -9,7 +9,7 @@
 | 7  | Functional Programming, Optional, Stream API | 28.11.2023 | Offline/Online |           |
 | 8  | Practice 1                                   | 5.12.2023  | Offline/Online |           |
 | 9  | Concurrency                                  | 12.12.2023 | Offline/Online |           |
-| 10 | Reflection                                   | 19.12.2023 | Online         |           |
+| 10 | Reflection                                   | 19.12.2023 | Offline/Online |           |
 | 11 | Software Craftsmanship                       | 26.12.2023 | Offline/Online |           |
 | -- | Holidays                                     | 2.1.2024   | Just Chill!    |           |
 | -- | Holidays                                     | 9.1.2024   | Just Chill!    |           |
