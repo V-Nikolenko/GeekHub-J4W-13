@@ -13,6 +13,5 @@ include 'Homework:java-core:10-Reflection-API'
 
 
 include 'Homework:java-web'
-include 'Homework:java-web:14-Gradle-CI'
 
 include 'Coursework'
