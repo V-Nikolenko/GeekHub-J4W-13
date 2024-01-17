@@ -10,6 +10,9 @@ include 'Homework:java-core:07-Optional-Stream-API'
 include 'Homework:java-core:08-Practice:LearnIt'
 include 'Homework:java-core:09-Concurrency'
 include 'Homework:java-core:10-Reflection-API'
+include 'Homework:java-core:12-Gradle'
+include("Homework:java-core:12-Gradle:tar-tasks")
+include("Homework:java-core:12-Gradle:open-api-generation")
 
 
 include 'Homework:java-web'

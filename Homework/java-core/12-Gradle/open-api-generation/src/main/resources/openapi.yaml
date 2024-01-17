@@ -1,0 +1,35 @@
+openapi: 3.0.0
+info:
+  title: Caesar Encoder API
+  version: 1.0.0
+
+components:
+  schemas:
+    CaesarCipherDto:
+      type: object
+      properties:
+        message:
+          type: string
+          description: The message to be encoded/decoded
+        shift:
+          type: integer
+          description: The shift value for the Caesar Cipher
+          minimum: 1
+          maximum: 25
+      required:
+        - message
+        - shift
+    VigenereCipherDto:
+        type: object
+        properties:
+          message:
+            type: string
+            description: The message to be encoded/decoded
+          keyword:
+            type: string
+            description: The keyword for the Vigenere Cipher
+        required:
+          - message
+          - keyword
+paths:
+  {}
