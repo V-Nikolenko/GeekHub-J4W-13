@@ -1,6 +1,7 @@
 package org.geekhub.example.configurations;
 
 import com.zaxxer.hikari.HikariDataSource;
+import org.flywaydb.core.Flyway;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -34,11 +35,23 @@ public class DatabaseConfiguration {
     public JdbcTemplate jdbcTemplate(DataSource dataSource) {
         return new JdbcTemplate(dataSource);
     }
-
     // OR
     @Bean
     public NamedParameterJdbcTemplate namedParameterJdbcTemplate(DataSource dataSource) {
         return new NamedParameterJdbcTemplate(dataSource);
+    }
+
+    @Bean(initMethod = "migrate")
+    public Flyway flyway(DataSource dataSource,
+                         @Value("${spring.flyway.baselineOnMigrate}") boolean baselineOnMigrate,
+                         @Value("${spring.flyway.validateOnMigrate}") boolean validateOnMigrate,
+                         @Value("${spring.flyway.locations}") String[] locations) {
+        return Flyway.configure()
+            .dataSource(dataSource)
+            .locations(locations)
+            .baselineOnMigrate(baselineOnMigrate)
+            .validateOnMigrate(validateOnMigrate)
+            .load();
     }
 
     @Bean

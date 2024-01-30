@@ -1,9 +1,7 @@
 package org.geekhub.example;
 
 import org.geekhub.example.models.Book;
-import org.geekhub.example.repositories.BookRepository;
 import org.geekhub.example.repositories.JdbcTempalteBookRepository;
-import org.geekhub.example.repositories.NamedJdbcTemplateBookRepository;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.core.env.AbstractEnvironment;
 
