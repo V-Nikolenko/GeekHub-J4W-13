@@ -10,14 +10,15 @@ import java.util.List;
 
 public class ApplicationStarter {
 
-    private static final String ACTIVE_PROFILE = "dev";
+    private static final String DEV_PROFILE = "dev";
+    private static final String PROD_PROFILE = "prod";
 
     public static void main(String[] args) {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
 
         context.getEnvironment()
             .getSystemProperties()
-            .put(AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME, ACTIVE_PROFILE);
+            .put(AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME, DEV_PROFILE);
 
         context.scan("org.geekhub.example");
 
