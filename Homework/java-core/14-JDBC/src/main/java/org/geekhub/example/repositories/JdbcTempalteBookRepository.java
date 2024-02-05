@@ -8,8 +8,8 @@ import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
+import java.sql.Timestamp;
 import java.time.OffsetDateTime;
-import java.time.ZoneOffset;
 import java.util.List;
 
 @Repository
@@ -23,14 +23,14 @@ public class JdbcTempalteBookRepository implements BookRepository {
 
     public void createTable() {
         String sqlQuery = """
-                CREATE TABLE IF NOT EXISTS books (
-                    id SERIAL PRIMARY KEY,
-                    name VARCHAR(100) NOT NULL,
-                    description VARCHAR(255),
-                    author VARCHAR(255) NOT NULL,
-                    publishDate TIMESTAMP
-                )
-                """;
+            CREATE TABLE IF NOT EXISTS books (
+                id SERIAL PRIMARY KEY,
+                name VARCHAR(100) NOT NULL,
+                description VARCHAR(255),
+                author VARCHAR(255) NOT NULL,
+                publishDate TIMESTAMP
+            )
+            """;
 
         jdbcTemplate.execute(sqlQuery);
     }
@@ -38,16 +38,16 @@ public class JdbcTempalteBookRepository implements BookRepository {
     @Override
     public Book createBook(@NonNull Book book) {
         String sqlQuery = """
-                INSERT INTO books (name, description, author, publishDate) VALUES (?, ?, ?, ?)
-                """;
+            INSERT INTO books (name, description, author, publishDate) VALUES (?, ?, ?, ?)
+            """;
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(connection -> {
-            PreparedStatement statement = connection.prepareStatement(sqlQuery, new String[] {"id"});
+            PreparedStatement statement = connection.prepareStatement(sqlQuery, new String[]{"id"});
             statement.setString(1, book.name());
             statement.setString(2, book.description());
             statement.setString(3, book.author());
-            statement.setTimestamp(4, java.sql.Timestamp.from(book.publishDate().toInstant()));
+            statement.setTimestamp(4, Timestamp.from(book.publishDate().toInstant()));
             return statement;
         }, keyHolder);
 
@@ -64,87 +64,52 @@ public class JdbcTempalteBookRepository implements BookRepository {
     public List<Book> getAllBooks() {
         String sqlQuery = "SELECT * FROM books ORDER BY id ASC";
 
-        return jdbcTemplate.query(sqlQuery, (rs, rowNum) ->
-                new Book(
-                        rs.getInt("id"),
-                        rs.getString("name"),
-                        rs.getString("description"),
-                        rs.getString("author"),
-                        rs.getTimestamp("publishDate").toInstant().atOffset(ZoneOffset.UTC)
-                )
-        );
+        return jdbcTemplate.query(sqlQuery, BookMapper::mapToBook);
     }
 
     @Override
     public Book getBookById(int id) {
         String sqlQuery = "SELECT * FROM books WHERE id = ?";
 
-        return jdbcTemplate.queryForObject(sqlQuery, (rs, rowNum) ->
-                new Book(
-                        rs.getInt("id"),
-                        rs.getString("name"),
-                        rs.getString("description"),
-                        rs.getString("author"),
-                        rs.getTimestamp("publishDate").toInstant().atOffset(ZoneOffset.UTC)
-                ), id
-        );
+        return jdbcTemplate.queryForObject(sqlQuery, BookMapper::mapToBook, id);
     }
 
     @Override
     public void deleteBookById(int id) {
         String sqlQuery = "DELETE FROM books WHERE id = ?";
+
         jdbcTemplate.update(sqlQuery, id);
     }
 
     @Override
     public void updateBook(@NonNull Book book) {
         String sqlQuery = """
-                UPDATE books
-                SET name = ?, description = ?, author = ?, publishDate = ?
-                WHERE id = ?
-                """;
+            UPDATE books
+            SET name = ?, description = ?, author = ?, publishDate = ?
+            WHERE id = ?
+            """;
+
         jdbcTemplate.update(sqlQuery, book.name(), book.description(), book.author(), book.publishDate(), book.id());
     }
 
     @Override
     public List<Book> findBooksByName(@NonNull String name) {
         String sqlQuery = "SELECT * FROM books WHERE name = ?";
-        return jdbcTemplate.query(sqlQuery, (rs, rowNum) ->
-            new Book(
-                rs.getInt("id"),
-                rs.getString("name"),
-                rs.getString("description"),
-                rs.getString("author"),
-                rs.getTimestamp("publishDate").toInstant().atOffset(ZoneOffset.UTC)
-            ), name
-        );
+
+        return jdbcTemplate.query(sqlQuery, BookMapper::mapToBook, name);
     }
 
     @Override
     public List<Book> findBooksByAuthor(@NonNull String author) {
         String sqlQuery = "SELECT * FROM books WHERE author = ?";
-        return jdbcTemplate.query(sqlQuery, (rs, rowNum) ->
-                new Book(
-                        rs.getInt("id"),
-                        rs.getString("name"),
-                        rs.getString("description"),
-                        rs.getString("author"),
-                        rs.getTimestamp("publishDate").toInstant().atOffset(ZoneOffset.UTC)
-                ), author
-        );
+
+        return jdbcTemplate.query(sqlQuery, BookMapper::mapToBook, author);
     }
 
     @Override
     public List<Book> findBooksPublishedInDateRange(@NonNull OffsetDateTime from, @NonNull OffsetDateTime to) {
         String sqlQuery = "SELECT * FROM books WHERE year BETWEEN ? AND ?";
-        return jdbcTemplate.query(sqlQuery, (rs, rowNum) ->
-                new Book(
-                        rs.getInt("id"),
-                        rs.getString("name"),
-                        rs.getString("description"),
-                        rs.getString("author"),
-                        rs.getTimestamp("publishDate").toInstant().atOffset(ZoneOffset.UTC)
-                ), from, to
-        );
+
+        return jdbcTemplate.query(sqlQuery, BookMapper::mapToBook, from, to);
     }
 }

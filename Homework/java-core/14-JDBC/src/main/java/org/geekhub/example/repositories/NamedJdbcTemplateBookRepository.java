@@ -6,11 +6,12 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Timestamp;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Map;
 
 @Repository
 public class NamedJdbcTemplateBookRepository implements BookRepository {
@@ -24,8 +25,8 @@ public class NamedJdbcTemplateBookRepository implements BookRepository {
     @Override
     public Book createBook(Book book) {
         String query = """
-                INSERT INTO books (name, description, author, publishDate) VALUES (:name, :description, :author, :publishDate)
-                """;
+            INSERT INTO books (name, description, author, publishDate) VALUES (:name, :description, :author, :publishDate)
+            """;
 
         SqlParameterSource parameters = new MapSqlParameterSource()
             .addValue("name", book.name())
@@ -34,43 +35,78 @@ public class NamedJdbcTemplateBookRepository implements BookRepository {
             .addValue("publishDate", java.sql.Timestamp.from(book.publishDate().toInstant()));
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
-        namedJdbcTemplate.update(query, parameters, keyHolder, new String[] {"id"});
+        namedJdbcTemplate.update(query, parameters, keyHolder, new String[]{"id"});
 
         return new Book(keyHolder.getKey().intValue(), book.name(), book.description(), book.author(), book.publishDate());
     }
 
     @Override
     public List<Book> getAllBooks() {
-        return null;
+        String query = "SELECT * FROM books";
+
+        return namedJdbcTemplate.query(query, BookMapper::mapToBook);
     }
 
     @Override
     public Book getBookById(int id) {
-        return null;
+        String query = "SELECT * FROM books WHERE id = :id";
+
+        SqlParameterSource parameters = new MapSqlParameterSource()
+            .addValue("id", id);
+        return namedJdbcTemplate.queryForObject(query, parameters, BookMapper::mapToBook);
     }
 
     @Override
     public void deleteBookById(int id) {
+        String query = "DELETE FROM books WHERE id = :id";
+
+        SqlParameterSource parameters = new MapSqlParameterSource()
+            .addValue("id", id);
+        namedJdbcTemplate.update(query, parameters);
 
     }
 
     @Override
-    public void updateBook(Book book) {
+    public void updateBook(@NonNull Book book) {
+        String query = """
+            UPDATE books SET name = :name, description = :description, author = :author, publishDate = :publishDate WHERE id = :id
+            """;
+
+        SqlParameterSource parameters = new MapSqlParameterSource()
+            .addValue("id", book.id())
+            .addValue("name", book.name())
+            .addValue("description", book.description())
+            .addValue("author", book.author())
+            .addValue("publishDate", java.sql.Timestamp.from(book.publishDate().toInstant()));
+        namedJdbcTemplate.update(query, parameters);
 
     }
 
     @Override
     public List<Book> findBooksByName(String name) {
-        return null;
+        String query = "SELECT * FROM books WHERE name = :name";
+
+        SqlParameterSource parameters = new MapSqlParameterSource()
+            .addValue("name", name);
+        return namedJdbcTemplate.query(query, parameters, BookMapper::mapToBook);
     }
 
     @Override
-    public List<Book> findBooksByAuthor(String author) {
-        return null;
+    public List<Book> findBooksByAuthor(@NonNull String author) {
+        String query = "SELECT * FROM books WHERE author = :author";
+
+        SqlParameterSource parameters = new MapSqlParameterSource()
+            .addValue("author", author);
+        return namedJdbcTemplate.query(query, parameters, BookMapper::mapToBook);
     }
 
     @Override
     public List<Book> findBooksPublishedInDateRange(OffsetDateTime from, OffsetDateTime to) {
-        return null;
+        String query = "SELECT * FROM books WHERE publishDate BETWEEN :from AND :to";
+
+        SqlParameterSource parameters = new MapSqlParameterSource()
+            .addValue("from", Timestamp.from(from.toInstant()))
+            .addValue("to", Timestamp.from(to.toInstant()));
+        return namedJdbcTemplate.query(query, parameters, BookMapper::mapToBook);
     }
 }
