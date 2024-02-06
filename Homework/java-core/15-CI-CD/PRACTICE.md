@@ -22,6 +22,7 @@ Criteria:
 - Credentials to Maven Repository should be stored
   in [GitHub repo secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions) and
   passed to Gradle as Environment variables
+- Publishing logic should be implemented in a `run_lib_publish_job.yml` GitHub Actions workflow
 - `!!!` Pipeline should be completed successful at the time of homework check
 
 Materials:
