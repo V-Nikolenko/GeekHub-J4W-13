@@ -5,6 +5,7 @@ import org.geekhub.crypto.encoding.EncodingOperation;
 import org.geekhub.crypto.encoding.EncodingService;
 import org.geekhub.crypto.history.HistoryRecord;
 import org.geekhub.crypto.history.HistoryService;
+import org.geekhub.crypto.users.UserService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -21,22 +22,30 @@ public class UserInteractionService {
 
     private final EncodingService encodingService;
     private final HistoryService historyService;
+    private final UserService userService;
 
     public UserInteractionService(@Value("${active.user.id}") int activeUserId,
                                   @Value("${active.user.inputMessage}") String inputMessage,
                                   @Value("${active.codec.algorithm}") String encodingAlgorithm,
                                   @Value("${active.codec.operation}") String encodingOperation,
                                   EncodingService encodingService,
-                                  HistoryService historyService) {
+                                  HistoryService historyService,
+                                  UserService userService) {
         this.encodingAlgorithm = EncodingAlgorithm.valueOf(encodingAlgorithm);
         this.encodingOperation = EncodingOperation.valueOf(encodingOperation);
         this.inputMessage = inputMessage;
         this.activeUserId = activeUserId;
         this.encodingService = encodingService;
         this.historyService = historyService;
+        this.userService = userService;
     }
 
     public void interactWithApplication() {
+        if (!userService.isUserExist(activeUserId)) {
+            System.err.println("User with id " + activeUserId + " not exists");
+            return;
+        }
+
         String encodedMessage = encodingService.encode(encodingAlgorithm, encodingOperation, inputMessage);
 
         HistoryRecord historyRecord = HistoryRecord.builder()

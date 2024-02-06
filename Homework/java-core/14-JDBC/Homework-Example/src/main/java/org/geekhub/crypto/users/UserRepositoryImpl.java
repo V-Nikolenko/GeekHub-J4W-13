@@ -1,8 +1,11 @@
 package org.geekhub.crypto.users;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
 
 @Repository
 public class UserRepositoryImpl implements UserRepository {
@@ -14,13 +17,17 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public boolean userExists(int userId) {
-        String query = "SELECT EXISTS (SELECT 1 FROM users WHERE user_id = :userId)";
+    public Optional<User> getUser(int userId) {
+        String query = "SELECT * FROM users WHERE user_id = :userId";
 
         MapSqlParameterSource params = new MapSqlParameterSource()
             .addValue("userId", userId);
 
-        Boolean result = jdbcTemplate.queryForObject(query, params, Boolean.class);
-        return Boolean.TRUE.equals(result);
+        try {
+            User user = jdbcTemplate.queryForObject(query, params, UserMapper::mapToPojo);
+            return Optional.ofNullable(user);
+        } catch (EmptyResultDataAccessException e) {
+            return Optional.empty();
+        }
     }
 }
