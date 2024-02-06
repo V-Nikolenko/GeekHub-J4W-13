@@ -14,6 +14,7 @@ include 'Homework:java-core:12-Gradle'
 include("Homework:java-core:12-Gradle:tar-tasks")
 include("Homework:java-core:12-Gradle:open-api-generation")
 include("Homework:java-core:14-JDBC")
+include("Homework:java-core:14-JDBC:Homework-Example")
 
 include 'Homework:java-web'
 
