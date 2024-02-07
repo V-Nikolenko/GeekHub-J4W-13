@@ -38,14 +38,15 @@ Materials:
 Each student will have own remote Maven repository hosted on [Repsy.io](http://Repsy.io) with the following name
 format: `https://repsy.io/mvn/vrudas/<REPSY_MAVEN_REPO_NAME>`
 
-| GeekHub Student    | Repsy Maven Repo Name    | login       | email                        | Access Granted |
-|--------------------|--------------------------|-------------|------------------------------|----------------|
-| Anya Havryliuk     | ahavryliuk-j4w-s13-repo  |             |                              | ❌              |
-| Elvira Chala       | echala-j4w-s13-repo      | elvirachala | elvira.chalaya0018@gmail.com | ✅              |
-| Karina Tkach       | ktkach-j4w-s13-repo      | karinatkach | ms.karinatk@gmail.com        | ✅              |
-| Mykhailo Kaminskyi | mkaminskyi-j4w-s13-repo  |             |                              | ❌              |
-| Oleksandr Kukotin  | okukotin-j4w-s13-repo    | oleksandr_k | oleksandr.kukotin@gmail.com  | ✅              |
-| Serhii Lotsman     | slotsman-j4w-s13-repo    | slotsman    | lotsman.961@gmail.com        | ✅              |
-| Serhii Tserkovnyi  | stserkovnyi-j4w-s13-repo | sergiy413   | dizz413@gmail.com            | ✅              |
-| Victoria Babchenko | vbabchenko-j4w-s13-repo  |             |                              | ❌              |
-| Volodymyr Feofilov | vfeofilov-j4w-s13-repo   | feofilov    | vladimirfiloff@gmail.com     | ✅              |
+| GeekHub Student    | Repsy Maven Repo Name    | login              | email                          | Access Granted |
+|--------------------|--------------------------|--------------------|--------------------------------|----------------|
+| Anya Havryliuk     | ahavryliuk-j4w-s13-repo  | annagav            | annagavriluk772@gmail.com      | ✅              |
+| Elvira Chala       | echala-j4w-s13-repo      | elvirachala        | elvira.chalaya0018@gmail.com   | ✅              |
+| Karina Tkach       | ktkach-j4w-s13-repo      | karinatkach        | ms.karinatk@gmail.com          | ✅              |
+| Mykhailo Kaminskyi | mkaminskyi-j4w-s13-repo  | kaminskyi          | kaminskyi.mv@gmail.com         | ✅              |
+| Oleksandr Kukotin  | okukotin-j4w-s13-repo    | oleksandr_k        | oleksandr.kukotin@gmail.com    | ✅              |
+| Serhii Lotsman     | slotsman-j4w-s13-repo    | slotsman           | lotsman.961@gmail.com          | ✅              |
+| Serhii Tserkovnyi  | stserkovnyi-j4w-s13-repo | sergiy413          | dizz413@gmail.com              | ✅              |
+| Victoria Babchenko | vbabchenko-j4w-s13-repo  | victoria_babchenko | victoria.babchenko30@gmail.com | ✅              |
+| Volodymyr Feofilov | vfeofilov-j4w-s13-repo   | feofilov           | vladimirfiloff@gmail.com       | ✅              |
+| Yana Hontarenko    | yhontarenko-j4w-s13-repo | hontiky            | yana.hontarenko@gmail.com      | ✅              |
