@@ -22,8 +22,8 @@
 | 18 | Front End                                    | 27.2.2024  |                |           |
 | 19 | REST, Swagger                                | 5.3.2024   |                |           |
 | 20 | Microservices                                | 12.3.2024  |                |           |
-| 21 | Spring Security p1                           | 19.3.2024  |                |           |
-| 22 | Spring Security p2                           | 26.3.2024  |                |           |
+| 21 | Web Application Security                     | 19.3.2024  |                |           |
+| 22 | Spring Security                              | 26.3.2024  |                |           |
 | 23 | Integration Testing                          | 2.4.2024   |                |           |
 | 24 | Docker                                       | 9.4.2024   |                |           |
 | 25 | Course works preview                         | 16.4.2024  |                |           |
