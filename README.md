@@ -13,12 +13,12 @@
 | 11 | Software Craftsmanship                       | 26.12.2023 | Offline/Online |           |
 | -- | Holidays                                     | 2.1.2024   | Just Chill!    |           |
 | -- | Holidays                                     | 9.1.2024   | Just Chill!    |           |
-| 12 | Gradle                                       | 16.1.2024  |                |           |
-| 13 | Spring IoC                                   | 30.1.2024  |                |           |
-| 14 | JDBC, Spring JDBC, Flyway                    | 6.2.2024   |                |           |
-| 15 | CI/CD                                        | 23.1.2024  |                |           |
-| 16 | Spring MVC, Boot                             | 13.2.2024  |                |           |
-| 17 | Practice 2                                   | 20.2.2024  |                |           |
+| 12 | Gradle                                       | 16.1.2024  | Online         |           |
+| 13 | Spring IoC                                   | 23.1.2024  | Online         |           |
+| 14 | JDBC, Spring JDBC, Flyway                    | 30.1.2024  | Offline/Online |           |
+| 15 | CI/CD                                        | 7.02.2024  | Offline/Online |           |
+| 16 | Spring MVC, Boot                             | 13.2.2024  | Online         |           |
+| 17 | Practice 2                                   | 20.2.2024  | Online         |           |
 | 18 | Front End                                    | 27.2.2024  |                |           |
 | 19 | REST, Swagger                                | 5.3.2024   |                |           |
 | 20 | Microservices                                | 12.3.2024  |                |           |
