@@ -1,0 +1,42 @@
+version: "3"
+services:
+
+  postgres:
+    image: postgres
+    container_name: qa-postgres
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=localdb
+    volumes:
+      - ./docker-volume/db:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: qa-pgadmin
+    depends_on:
+      - postgres
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
+    volumes:
+      - ./docker-volume/pgadmin:/var/lib/pgadmin
+    ports:
+      - 9000:80
+
+  spring-boot-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: qa-spring-boot-app
+    ports:
+      - 8080:8080
+    depends_on:
+      - postgres
+    environment:
+      - 'SERVER_PORT=8080'
+      - 'SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/localdb'
+      - 'SPRING_DATASOURCE_USERNAME=admin'
+      - 'SPRING_DATASOURCE_PASSWORD=admin'
