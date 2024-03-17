@@ -1,6 +1,6 @@
 FROM gradle:jdk17 AS build
 WORKDIR /app-source
-COPY build.gradle settings.gradle gradlew ./
+COPY build.gradle.kts settings.gradle.kts gradlew ./
 COPY gradle ./gradle
 COPY Coursework ./Coursework
 RUN ./gradlew clean Coursework:bootJar
